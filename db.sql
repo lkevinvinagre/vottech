@@ -21,12 +21,12 @@ CREATE TABLE IF NOT EXISTS visitor(
 CREATE TABLE IF NOT EXISTS institute(
     id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     CNPJ VARCHAR(21),
-    iname VARCHAR(255) NOT NULL
+    name VARCHAR(255) NOT NULL
 );
 
 -- Criar Tabela de Administradores
 CREATE TABLE IF NOT EXISTS admin(
-     id INT NOT NULL AUTO_INCREMENT PRIMARY KEY 
+     id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
      uId INT NOT NULL,
      iId INT NOT NULL,
      role VARCHAR(255) NOT NULL,
@@ -41,6 +41,8 @@ CREATE TABLE IF NOT EXISTS event(
      description TEXT NOT NULL,
      initDate DATE NOT NULL,
      endDate DATE NOT NULL,
+     iId INT NOT NULL,
+     FOREIGN KEY (iId) REFERENCES institute(id)
 );
 
 -- Criar Tabela de Projetos  
