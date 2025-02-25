@@ -1,0 +1,24 @@
+version: '4.0'
+services:
+    db:
+      image: mysql:5.7
+      container_name: vottech_db
+      restart: always
+      environment:
+        MYSQL_ROOT_PASSWORD: root
+        MYSQL_DATABASE: vottech
+        MYSQL_USER: adm
+        MYSQL_PASSWORD: vottech123
+      ports:
+        - "3306:3306"
+      volumes:
+        - vottech:/var/lib/mysql
+      networks:
+        - app-networks
+volumes:
+    vottech:
+
+networks:
+    app-networks:
+        driver: bridge
+  
