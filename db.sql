@@ -1,6 +1,6 @@
 -- Criar banco de dados
 
-    CREATE DATABASE vottech IF NOT EXISTS;
+    CREATE DATABASE IF NOT EXISTS vottech;
     USE vottech;
 
 -- Criar Tabela de usuario
