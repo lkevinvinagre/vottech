@@ -68,7 +68,7 @@
     CREATE TABLE IF NOT EXISTS vote(
         vId INT NOT NULL PRIMARY KEY,
         pId INT NOT NULL PRIMARY KEY,
-        voteDate DATE NOT NULL,
+        voteDate DATE NOT NULL STANDARD CURRENT_TIMESTAMP,
         FOREIGN KEY (vId) REFERENCES visitor(id),
         FOREIGN KEY (pId) REFERENCES project(id)
     );
