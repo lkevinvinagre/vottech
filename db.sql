@@ -5,7 +5,7 @@ CREATE TABLE IF NOT EXISTS user(
     username VARCHAR(150) NOT NULL,
     pass TEXT NOT NULL,
     email VARCHAR(150) NOT NULL,
-    status CHAR(1) STANDARD 'A'
+    status VARCHAR(1) DEFAULT 'A'
 );
 
 -- Criar Tabela de Visitantes
@@ -59,7 +59,7 @@ CREATE TABLE IF NOT EXISTS vote(
      id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
      vId INT NOT NULL,
      pId INT NOT NULL,
-     voteDate TIMESTAMP STANDARD CURRENT_TIMESTAMP,
+     voteDate TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
      FOREIGN KEY (vId) REFERENCES visitor(id),
      FOREIGN KEY (pId) REFERENCES project(id)
 );
