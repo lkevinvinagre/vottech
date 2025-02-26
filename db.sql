@@ -26,12 +26,12 @@ CREATE TABLE IF NOT EXISTS institute(
 
 -- Criar Tabela de Administradores
 CREATE TABLE IF NOT EXISTS admin(
-     id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
      uId INT NOT NULL,
      iId INT NOT NULL,
      role VARCHAR(255) NOT NULL,
      FOREIGN KEY (uId) REFERENCES user(id),
-     FOREIGN KEY (iId) REFERENCES institute(Id)
+     FOREIGN KEY (iId) REFERENCES institute(Id),
+     PRIMARY KEY (uId, iId)
 );
 
 -- Criar Tabela de Evento
@@ -56,10 +56,10 @@ CREATE TABLE IF NOT EXISTS project(
 
 -- Criar Tabela de Votos
 CREATE TABLE IF NOT EXISTS vote(
-     id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
      vId INT NOT NULL,
      pId INT NOT NULL,
      voteDate TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
      FOREIGN KEY (vId) REFERENCES visitor(id),
-     FOREIGN KEY (pId) REFERENCES project(id)
+     FOREIGN KEY (pId) REFERENCES project(id),
+     PRIMARY KEY (vId, pId);
 );
