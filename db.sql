@@ -5,7 +5,7 @@ CREATE TABLE IF NOT EXISTS user(
     username VARCHAR(150) NOT NULL,
     pass TEXT NOT NULL,
     email VARCHAR(150) NOT NULL,
-    status CHAR(1) DEFAULT 'A'
+    status CHAR(1) STANDARD 'A'
 );
 
 -- Criar Tabela de Visitantes
