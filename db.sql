@@ -1,6 +1,6 @@
 -- Criar banco de dados
 -- Criar Tabela de usuario
-CREATE TABLE IF NOT EXISTS user(
+CREATE TABLE IF NOT EXISTS users(
     id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     username VARCHAR(150) NOT NULL,
     pass TEXT NOT NULL,
