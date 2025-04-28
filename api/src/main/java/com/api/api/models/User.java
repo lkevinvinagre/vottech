@@ -32,7 +32,7 @@ public class User {
     private String email;
 
     @Column(name = "password", nullable = false, columnDefinition = "TEXT")
-    private String color;
+    private String password;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "role", nullable = false)
