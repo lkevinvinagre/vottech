@@ -1,4 +1,4 @@
-FROM maven:3.9.9-eclipse-temurin-24-noble-jdk-alpine AS build
+FROM maven:3.9.9-eclipse-temurin-24-noble AS build
 WORKDIR /app
 COPY pom.xml .
 COPY src ./src
