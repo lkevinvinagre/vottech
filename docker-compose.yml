@@ -22,12 +22,12 @@ services:
     container_name: api
     restart: always
     environment:
-      DS_URL: jdbc:mysql://rdb:3306/residuumdb
+      DS_URL: jdbc:mysql://db:3306/vottech
       DS_USER: votuser
       DS_PASSWORD: votuser123
       DS_DLL_AUTO: update
     ports:
-      - "8000:8000"
+      - "8080:8080"
     depends_on:
       - db
     networks:
