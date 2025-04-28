@@ -1,0 +1,43 @@
+services:
+  #Data Base
+  db:
+    image: mysql:5.7
+    container_name: database
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: vot2025
+      MYSQL_DATABASE: vottech
+      MYSQL_USER: votuser
+      MYSQL_PASSWORD: votuser123
+    ports:
+      - "3306:3306"
+    volumes:
+      - vottech_data:/var/lib/mysql
+    networks:
+      - vottechNet
+
+#Web Application
+  api:
+    build: ./api
+    container_name: api
+    restart: always
+    environment:
+      DS_URL: jdbc:mysql://rdb:3306/residuumdb
+      DS_USER: votuser
+      DS_PASSWORD: votuser123
+      DS_DLL_AUTO: update
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+    networks:
+      - vottechNet
+
+#Datas
+volumes:
+  vottech_data:
+
+#Networks
+networks:
+  vottechNet:
+    driver: bridge
