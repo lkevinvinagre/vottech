@@ -1,13 +1,14 @@
 services:
   #Data Base
   db:
-    image: postgres:latest
+    image: postgres:15.2-alpine
     container_name: database
     restart: always
     environment:
-      POSTGRES_PASSWORD: ATL2sZXiBoQ7CoFHXhePlSOTZWJRqdAH
-      POSTGRES_DATABASE: vottech
+      POSTGRES_PASSWORD: votuser123
+      POSTGRES_DB: vottech
       POSTGRES_USER: votuser
+      PGDATA: /var/lib/postgresql/data
     ports:
       - "5432:5432"
     volumes:
@@ -21,9 +22,9 @@ services:
     container_name: api
     restart: always
     environment:
-      DATABASE_URL: jdbc:postgresql://localhost:5432/vottech
+      DATABASE_URL: jdbc:postgresql://db:5432/vottech
       DATABASE_USERNAME: votuser
-      DATABASE_PASSWORD: ATL2sZXiBoQ7CoFHXhePlSOTZWJRqdAH
+      DATABASE_PASSWORD: votuser123
     ports:
       - "8080:8080"
     depends_on:
