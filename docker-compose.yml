@@ -1,0 +1,41 @@
+services:
+  #Data Base
+  db:
+    image: postgres:latest
+    container_name: database
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: ATL2sZXiBoQ7CoFHXhePlSOTZWJRqdAH
+      POSTGRES_DATABASE: vottech
+      POSTGRES_USER: votuser
+    ports:
+      - "5432:5432"
+    volumes:
+      - postdata:/var/lib/postgresql/data
+    networks:
+      - vottechNet
+
+#Web Application
+  api:
+    build: ./api
+    container_name: api
+    restart: always
+    environment:
+      DATABASE_URL: jdbc:postgresql://localhost:5432/vottech
+      DATABASE_USERNAME: votuser
+      DATABASE_PASSWORD: ATL2sZXiBoQ7CoFHXhePlSOTZWJRqdAH
+    ports:
+      - "8080:8080"
+    depends_on:
+      - db
+    networks:
+      - vottechNet
+
+#Datas
+volumes:
+  postdata:
+
+#Networks
+networks:
+  vottechNet:
+    driver: bridge
