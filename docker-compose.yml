@@ -1,18 +1,18 @@
 services:
   #Data Base
   db:
-    image: mysql:5.7
+    image: postgres:latest
     container_name: database
     restart: always
     environment:
       MYSQL_ROOT_PASSWORD: vot2025
       MYSQL_DATABASE: vottech
       MYSQL_USER: votuser
-      MYSQL_PASSWORD: votuser123
+      MYSQL_PASSWORD: ATL2sZXiBoQ7CoFHXhePlSOTZWJRqdAH
     ports:
-      - "3306:3306"
+      - "5432:5432"
     volumes:
-      - vottech_data:/var/lib/mysql
+      - postdata:/var/lib/mysql
     networks:
       - vottechNet
 
@@ -22,10 +22,9 @@ services:
     container_name: api
     restart: always
     environment:
-      DS_URL: jdbc:mysql://db:3306/vottech
-      DS_USER: votuser
-      DS_PASSWORD: votuser123
-      DS_DLL_AUTO: update
+      DATABASE_URL: jdbc:mysql://db:3306/vottech
+      DATABASE_USER: votuser
+      DATABASE_PASSWORD: votuser123
     ports:
       - "8080:8080"
     depends_on:
@@ -35,7 +34,7 @@ services:
 
 #Datas
 volumes:
-  vottech_data:
+  postdata:
 
 #Networks
 networks:
