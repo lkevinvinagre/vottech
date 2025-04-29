@@ -5,14 +5,13 @@ services:
     container_name: database
     restart: always
     environment:
-      MYSQL_ROOT_PASSWORD: vot2025
-      MYSQL_DATABASE: vottech
-      MYSQL_USER: votuser
-      MYSQL_PASSWORD: ATL2sZXiBoQ7CoFHXhePlSOTZWJRqdAH
+      POSTGRES_PASSWORD: ATL2sZXiBoQ7CoFHXhePlSOTZWJRqdAH
+      POSTGRES_DATABASE: vottech
+      POSTGRES_USER: votuser
     ports:
       - "5432:5432"
     volumes:
-      - postdata:/var/lib/mysql
+      - postdata:/var/lib/postgresql/data
     networks:
       - vottechNet
 
@@ -22,9 +21,9 @@ services:
     container_name: api
     restart: always
     environment:
-      DATABASE_URL: jdbc:mysql://db:3306/vottech
-      DATABASE_USER: votuser
-      DATABASE_PASSWORD: votuser123
+      DATABASE_URL: jdbc:postgresql://localhost:5432/vottech
+      DATABASE_USERNAME: votuser
+      DATABASE_PASSWORD: ATL2sZXiBoQ7CoFHXhePlSOTZWJRqdAH
     ports:
       - "8080:8080"
     depends_on:

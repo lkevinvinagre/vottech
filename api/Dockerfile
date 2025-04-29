@@ -1,7 +1,7 @@
 FROM ubuntu:latest AS build
 
 RUN apt-get update 
-RUN apt-get install openjdk-24-jdk -y
+RUN apt-get install openjdk-17-jdk -y
 
 COPY pom.xml .
 COPY src ./src
@@ -9,7 +9,7 @@ COPY src ./src
 RUN apt-get install maven -y
 RUN mvn clean package
 
-FROM openjdk:17-jdk-slim@sha256:<latest-secure-digest>
+FROM openjdk:17-jdk-slim
 
 
 COPY --from=build /app/target/*.jar app.jar
