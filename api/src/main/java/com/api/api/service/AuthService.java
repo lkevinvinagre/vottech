@@ -50,7 +50,7 @@ public class AuthService {
         try 
         {
             userRepo.save(newUser);
-            return Optional.of("Email já Existente");
+            return Optional.of("Usuario cadastrado");
         }
         catch (Exception e)
         {
