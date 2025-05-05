@@ -35,8 +35,8 @@ public class AuthService {
             new UsernamePasswordAuthenticationToken(
                 signIn.getUserOrMail(), 
                 signIn.getPassword()));
-        SecurityContextHolder.getContext().setAuthentication(authentication);
-        return Optional.of("Login realizado com sucesso");
+            SecurityContextHolder.getContext().setAuthentication(authentication);
+            return Optional.of("Login realizado com sucesso");
         } finally
         {
             SecurityContextHolder.clearContext();
@@ -45,16 +45,16 @@ public class AuthService {
 
     public Optional<String> signUp(SignUpDto signUp)
     {
-        if(userRepo.existsByName(signUp.getName())) return Optional.of("Nome de usuario já Existente");
-        if(userRepo.existsByEmail(signUp.getEmail())) return Optional.of("Email já Existente");
-
-        User newUser = new User();
-        newUser.setName(signUp.getName());
-        newUser.setEmail(signUp.getEmail());
-        newUser.setPassword(passwordEncoder.encode(signUp.getPassword()));
-
         try 
         {
+            if(userRepo.existsByName(signUp.getName())) return Optional.of("Nome de usuario já Existente");
+            if(userRepo.existsByEmail(signUp.getEmail())) return Optional.of("Email já Existente");
+
+            User newUser = new User();
+            newUser.setName(signUp.getName());
+            newUser.setEmail(signUp.getEmail());
+            newUser.setPassword(passwordEncoder.encode(signUp.getPassword()));
+
             userRepo.save(newUser);
             return Optional.of("Usuario cadastrado");
         }
