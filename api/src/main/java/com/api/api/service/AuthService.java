@@ -29,12 +29,18 @@ public class AuthService {
 
     public Optional<String> signin(SignInDto signIn)
     {
-        Authentication authentication = authenticationManager.authenticate(
+        try
+        {
+            Authentication authentication = authenticationManager.authenticate(
             new UsernamePasswordAuthenticationToken(
                 signIn.getUserOrMail(), 
                 signIn.getPassword()));
         SecurityContextHolder.getContext().setAuthentication(authentication);
         return Optional.of("Login realizado com sucesso");
+        } finally
+        {
+            SecurityContextHolder.clearContext();
+        }
     }
 
     public Optional<String> signUp(SignUpDto signUp)
