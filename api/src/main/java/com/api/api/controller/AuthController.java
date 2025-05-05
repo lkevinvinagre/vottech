@@ -7,6 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.api.api.dto.SignInDto;
 import com.api.api.dto.SignUpDto;
 import com.api.api.service.AuthService;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -30,7 +31,7 @@ public class AuthController
     }
 
     @PostMapping("/signup")
-    public ResponseEntity<?> postMethodName(@RequestBody SignUpDto signup) 
+    public ResponseEntity<?> signUpUser(@RequestBody SignUpDto signup) 
     {
         Optional<String> response = authService.signUp(signup);
 
@@ -38,7 +39,15 @@ public class AuthController
         ?ResponseEntity.status(202).body(response.get())
         :ResponseEntity.status(400).body(response.get());
     }
-    
-    
+
+    @PostMapping("/signin")
+    public ResponseEntity<?> signInUser(@RequestBody SignInDto signin)
+    {
+        Optional<String> response = authService.signin(signin);
+
+        return (response.get().equals("Login realizado com sucesso"))
+        ?ResponseEntity.status(202).body(response.get())
+        :ResponseEntity.status(400).body(response.get());
+    }
 
 }
