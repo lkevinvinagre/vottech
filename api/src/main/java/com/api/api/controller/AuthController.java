@@ -43,7 +43,7 @@ public class AuthController
     @PostMapping("/signin")
     public ResponseEntity<?> signInUser(@RequestBody SignInDto signin)
     {
-        Optional<String> response = authService.signin(signin);
+        Optional<String> response = authService.signinTest(signin);
 
         return (response.get().equals("Login realizado com sucesso"))
         ?ResponseEntity.status(202).body(response.get())

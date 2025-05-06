@@ -27,6 +27,7 @@ public class AuthService {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
+
     public Optional<String> signin(SignInDto signIn)
     {
         try
@@ -40,6 +41,26 @@ public class AuthService {
         } finally
         {
             SecurityContextHolder.clearContext();
+        }
+    }
+
+    public Optional<String> signinTest(SignInDto signIn)
+    {
+        if(userRepo.existsByNameOrEmail(signIn.getUserOrMail(),signIn.getUserOrMail()))
+        {
+            User user = userRepo.findByNameOrEmail(signIn.getUserOrMail(),signIn.getUserOrMail()).get();
+            if(passwordEncoder.matches(signIn.getPassword(), user.getPassword()))
+            {
+                return Optional.of("Login realizado com sucesso");
+            }
+            else
+            {
+                return Optional.of("Senha incorreta");
+            }
+        }
+        else
+        {
+            return Optional.of("Usuario não encontrado");
         }
     }
 
