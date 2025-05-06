@@ -27,28 +27,55 @@ public class AuthService {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
+
     public Optional<String> signin(SignInDto signIn)
     {
-        Authentication authentication = authenticationManager.authenticate(
+        try
+        {
+            Authentication authentication = authenticationManager.authenticate(
             new UsernamePasswordAuthenticationToken(
                 signIn.getUserOrMail(), 
                 signIn.getPassword()));
-        SecurityContextHolder.getContext().setAuthentication(authentication);
-        return Optional.of("Login realizado com sucesso");
+            SecurityContextHolder.getContext().setAuthentication(authentication);
+            return Optional.of("Login realizado com sucesso");
+        } finally
+        {
+            SecurityContextHolder.clearContext();
+        }
+    }
+
+    public Optional<String> signinTest(SignInDto signIn)
+    {
+        if(userRepo.existsByNameOrEmail(signIn.getUserOrMail(),signIn.getUserOrMail()))
+        {
+            User user = userRepo.findByNameOrEmail(signIn.getUserOrMail(),signIn.getUserOrMail()).get();
+            if(passwordEncoder.matches(signIn.getPassword(), user.getPassword()))
+            {
+                return Optional.of("Login realizado com sucesso");
+            }
+            else
+            {
+                return Optional.of("Senha incorreta");
+            }
+        }
+        else
+        {
+            return Optional.of("Usuario não encontrado");
+        }
     }
 
     public Optional<String> signUp(SignUpDto signUp)
     {
-        if(userRepo.existsByName(signUp.getName())) return Optional.of("Nome de usuario já Existente");
-        if(userRepo.existsByEmail(signUp.getEmail())) return Optional.of("Email já Existente");
-
-        User newUser = new User();
-        newUser.setName(signUp.getName());
-        newUser.setEmail(signUp.getEmail());
-        newUser.setPassword(passwordEncoder.encode(signUp.getPassword()));
-
         try 
         {
+            if(userRepo.existsByName(signUp.getName())) return Optional.of("Nome de usuario já Existente");
+            if(userRepo.existsByEmail(signUp.getEmail())) return Optional.of("Email já Existente");
+
+            User newUser = new User();
+            newUser.setName(signUp.getName());
+            newUser.setEmail(signUp.getEmail());
+            newUser.setPassword(passwordEncoder.encode(signUp.getPassword()));
+
             userRepo.save(newUser);
             return Optional.of("Usuario cadastrado");
         }
