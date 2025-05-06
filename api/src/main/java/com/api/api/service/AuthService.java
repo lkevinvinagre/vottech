@@ -30,38 +30,13 @@ public class AuthService {
 
     public Optional<String> signin(SignInDto signIn)
     {
-        try
-        {
-            Authentication authentication = authenticationManager.authenticate(
-            new UsernamePasswordAuthenticationToken(
-                signIn.getUserOrMail(), 
-                signIn.getPassword()));
-            SecurityContextHolder.getContext().setAuthentication(authentication);
-            return Optional.of("Login realizado com sucesso");
-        } finally
-        {
-            SecurityContextHolder.clearContext();
-        }
-    }
-
-    public Optional<String> signinTest(SignInDto signIn)
-    {
-        if(userRepo.existsByNameOrEmail(signIn.getUserOrMail(),signIn.getUserOrMail()))
-        {
-            User user = userRepo.findByNameOrEmail(signIn.getUserOrMail(),signIn.getUserOrMail()).get();
-            if(passwordEncoder.matches(signIn.getPassword(), user.getPassword()))
-            {
-                return Optional.of("Login realizado com sucesso");
-            }
-            else
-            {
-                return Optional.of("Senha incorreta");
-            }
-        }
-        else
-        {
-            return Optional.of("Usuario não encontrado");
-        }
+        Authentication authentication = authenticationManager.authenticate(
+        new UsernamePasswordAuthenticationToken(
+            signIn.getUserOrMail(), 
+            signIn.getPassword()));
+        SecurityContextHolder.getContext().setAuthentication(authentication);
+        System.out.println(authentication);
+        return Optional.of("Login realizado com sucesso");
     }
 
     public Optional<String> signUp(SignUpDto signUp)
