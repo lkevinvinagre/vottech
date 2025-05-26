@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="userMailHint">User or Mail</string>
+    <string name="passwordHint">Password</string>
+    <string name="forgotPasswordLabel">Forgot Password ?</string>
+    <string name="signupLabel">Sign up</string>
+    <string name="signin">Enter</string>
+</resources>
