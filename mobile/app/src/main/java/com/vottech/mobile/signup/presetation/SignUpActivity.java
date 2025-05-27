@@ -32,7 +32,9 @@ public class SignUpActivity extends AppCompatActivity {
             return insets;
         });
 
-        SignUpService service = RetrofitClient.getRetrofitInstance().create(SignUpService.class);
+        SignUpService service = RetrofitClient
+                .getRetrofitInstance()
+                .create(SignUpService.class);
 
         SignUp signup = new SignUp();
         Call<String> call = service.signUpUser(signup);
