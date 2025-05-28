@@ -1,10 +1,106 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
     tools:context=".signup.presetation.SignUpActivity">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <LinearLayout
+        android:id="@+id/header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/logo_img"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="0.1"
+            android:adjustViewBounds="false"
+            android:cropToPadding="false"
+            android:scaleType="center"
+            android:scaleX="0.5"
+            android:scaleY="0.5"
+            app:srcCompat="@drawable/fucapix100" />
+
+        <TextView
+            android:id="@+id/form_lb"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:fontFamily="sans-serif-black"
+            android:padding="15sp"
+            android:text="@string/formTitleLb"
+            android:textColor="@color/blueblack"
+            android:textSize="60sp" />
+    </LinearLayout>
+
+    <EditText
+        android:id="@+id/name_field"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="@string/name_lb"
+        android:inputType="text"
+        android:padding="15sp"
+        android:textColor="@color/blueblack"
+        android:textColorHint="@color/blueblack" />
+
+    <EditText
+        android:id="@+id/mail_field"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="@string/mail_lb"
+        android:inputType="textEmailAddress"
+        android:padding="15sp"
+        android:textColor="@color/blueblack"
+        android:textColorHint="@color/blueblack" />
+
+    <EditText
+        android:id="@+id/pass_field"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="@string/pass_lb"
+        android:inputType="textPassword"
+        android:padding="15sp"
+        android:textColor="@color/blueblack"
+        android:textColorHint="@color/blueblack" />
+
+    <EditText
+        android:id="@+id/confirmPass_field"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="@string/confirmPassLb"
+        android:inputType="textPassword"
+        android:padding="15sp"
+        android:textColor="@color/blueblack"
+        android:textColorHint="@color/blueblack" />
+
+    <TextView
+        android:id="@+id/issue_lb"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="15sp"
+        android:text="@string/issue_lb"
+        android:textColor="@color/redWarning"
+        android:textSize="20sp"
+        tools:visibility="visible" />
+
+    <Button
+        android:id="@+id/signup_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="15sp"
+        android:onClick="SignUpUser"
+        android:padding="15sp"
+        android:text="@string/signupLb" />
+
+</LinearLayout>

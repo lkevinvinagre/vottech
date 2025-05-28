@@ -4,4 +4,6 @@
     <color name="white">#FFFFFFFF</color>
     <color name="hints">#373A42</color>
     <color name="link">#4078C9</color>
+    <color name="blueblack">#0B2348</color>
+    <color name="redWarning">#CB4940</color>
 </resources>

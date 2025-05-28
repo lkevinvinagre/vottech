@@ -19,7 +19,7 @@ public class SignUp {
         return this.name;
     }
 
-    public void setEmail()
+    public void setEmail(String email)
     {
         this.email = email;
     }
