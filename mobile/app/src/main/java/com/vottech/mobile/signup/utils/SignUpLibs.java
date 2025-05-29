@@ -31,7 +31,7 @@ public class SignUpLibs {
             @Override
             public void onFailure(Call<String> call, Throwable t) {
 
-                resp = t.getMessage();
+                resp = "Não foi possivel cadastrar o usuario";
 
             }
         });

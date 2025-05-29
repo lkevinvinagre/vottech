@@ -26,8 +26,6 @@ import retrofit2.Response;
 
 public class SignUpActivity extends AppCompatActivity {
 
-    private String resp;
-
     private EditText name_field;
     private EditText mail_field;
     private EditText pass_field;
@@ -75,6 +73,5 @@ public class SignUpActivity extends AppCompatActivity {
         }
         issue_lb.setText(issue);
         issue_lb.setVisibility(VISIBLE);
-
     }
 }
