@@ -36,6 +36,14 @@
         android:padding="15sp"
         android:textColorHint="@color/hints" />
 
+    <TextView
+        android:id="@+id/issue_lb"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/issue_lb"
+        android:textColor="@color/redWarning"
+        android:textSize="24sp" />
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
