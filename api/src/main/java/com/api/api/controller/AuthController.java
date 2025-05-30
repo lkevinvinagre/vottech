@@ -31,23 +31,19 @@ public class AuthController
     }
 
     @PostMapping("/signup")
-    public ResponseEntity<String> signUpUser(@RequestBody SignUpDto signup) 
+    public String signUpUser(@RequestBody SignUpDto signup) 
     {
         Optional<String> response = authService.signUp(signup);
 
-        return (response.get().equals("Usuario cadastrado"))
-        ?ResponseEntity.status(202).body(response.get())
-        :ResponseEntity.status(400).body(response.get());
+        return response.get();
     }
 
     @PostMapping("/signin")
-    public ResponseEntity<String> signInUser(@RequestBody SignInDto signin)
+    public String signInUser(@RequestBody SignInDto signin)
     {
         Optional<String> response = authService.signin(signin);
 
-        return (response.get().equals("Login realizado com sucesso"))
-        ?ResponseEntity.status(202).body(response.get())
-        :ResponseEntity.status(400).body(response.get());
+        return response.get();
     }
 
 }
