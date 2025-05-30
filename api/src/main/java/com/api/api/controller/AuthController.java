@@ -45,11 +45,17 @@ public class AuthController
     }
 
     @PostMapping("/signin")
-    public String signInUser(@RequestBody SignInDto signin)
+    public ResponseEntity<?> signInUser(@RequestBody SignInDto signin)
     {
         Optional<String> response = authService.signin(signin);
-
-        return response.get();
+        if(response.isPresent()){
+            return (response.get().equals("Login realizado com sucesso")) 
+                ? ResponseEntity.status(200).body(response.get())
+                : ResponseEntity.status(401).body(response.get());
+        }else
+        {
+            return ResponseEntity.status(500).body("Erro ao realizar login");
+        }
     }
 
 }
