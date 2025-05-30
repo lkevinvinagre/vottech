@@ -4,13 +4,14 @@ import com.vottech.mobile.signup.data.SignUp;
 
 import com.vottech.mobile.shared.utils.RetrofitClient;
 
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
 public class SignUpLibs {
 
-    private String resp;
+    String resp;
     public SignUpLibs(){}
 
     public String SignupUser(SignUp signup)
@@ -32,10 +33,8 @@ public class SignUpLibs {
             public void onFailure(Call<String> call, Throwable t) {
 
                 resp = "Não foi possivel cadastrar o usuario";
-
             }
         });
-
         return resp;
     }
 }

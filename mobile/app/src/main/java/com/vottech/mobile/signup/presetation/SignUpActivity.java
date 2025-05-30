@@ -31,6 +31,7 @@ public class SignUpActivity extends AppCompatActivity {
     private EditText pass_field;
     private EditText cpass_field;
     private TextView issue_lb;
+    private String issue = "*";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,7 +55,6 @@ public class SignUpActivity extends AppCompatActivity {
     
     public void SignUpUser(View view)
     {
-        String issue = "*";
         String name = name_field.getText().toString();
         String mail = mail_field.getText().toString();
         String pass = pass_field.getText().toString();
