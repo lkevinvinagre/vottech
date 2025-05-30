@@ -85,6 +85,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
+            android:onClick="signInUser"
             android:text="@string/signin"
             app:layout_constraintStart_toEndOf="@+id/signup_btn"
             app:layout_constraintTop_toTopOf="parent" />
