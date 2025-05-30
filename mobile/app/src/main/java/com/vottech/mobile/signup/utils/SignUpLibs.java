@@ -19,12 +19,11 @@ public class SignUpLibs {
                 .getRetrofitInstance()
                 .create(SignUpService.class);
         Call<String> call = service.signUpUser(signup);
-        call.enqueue(new Callback<String>() {
+        call.enqueue(new Callback<>() {
 
             @Override
             public void onResponse(Call<String> call, Response<String> response) {
-                if(response.isSuccessful())
-                {
+                if (response.isSuccessful()) {
                     resp = response.body();
                 }
             }
