@@ -31,11 +31,17 @@ public class AuthController
     }
 
     @PostMapping("/signup")
-    public String signUpUser(@RequestBody SignUpDto signup) 
+    public ResponseEntity<?> signUpUser(@RequestBody SignUpDto signup) 
     {
         Optional<String> response = authService.signUp(signup);
-
-        return response.get();
+        if(response.isPresent()){
+            return (response.get().equals("Usuario cadastrado")) 
+                ? ResponseEntity.status(201).body(response.get())
+                : ResponseEntity.status(409).body(response.get());
+        }else
+        {
+            return ResponseEntity.status(500).body("Erro ao cadastrar usuario");
+        }
     }
 
     @PostMapping("/signin")

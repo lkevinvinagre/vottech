@@ -15,14 +15,8 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.vottech.mobile.R;
-import com.vottech.mobile.shared.utils.RetrofitClient;
 import com.vottech.mobile.signup.data.SignUp;
 import com.vottech.mobile.signup.utils.SignUpLibs;
-import com.vottech.mobile.signup.utils.SignUpService;
-
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 public class SignUpActivity extends AppCompatActivity {
 

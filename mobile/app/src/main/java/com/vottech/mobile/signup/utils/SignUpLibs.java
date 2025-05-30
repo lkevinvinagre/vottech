@@ -4,7 +4,6 @@ import com.vottech.mobile.signup.data.SignUp;
 
 import com.vottech.mobile.shared.utils.RetrofitClient;
 
-import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -21,6 +20,7 @@ public class SignUpLibs {
                 .create(SignUpService.class);
         Call<String> call = service.signUpUser(signup);
         call.enqueue(new Callback<String>() {
+
             @Override
             public void onResponse(Call<String> call, Response<String> response) {
                 if(response.isSuccessful())
