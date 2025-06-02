@@ -21,6 +21,7 @@ public class SignUpLibs {
         SignUpService service = RetrofitClient
                 .getRetrofitInstance()
                 .create(SignUpService.class);
+      
         Call<SignUpRM> call = service.signUpUser(signup);
         call.enqueue(new Callback<SignUpRM>() {
 
