@@ -4,6 +4,7 @@ import android.util.Log;
 
 import com.vottech.mobile.main.data.SignIn;
 import com.vottech.mobile.main.data.SignInRM;
+import com.vottech.mobile.shared.data.ResponseModel;
 import com.vottech.mobile.shared.utils.RetrofitClient;
 
 import retrofit2.Call;
@@ -21,20 +22,22 @@ public class SignInLibs {
         SignInService service = RetrofitClient
                 .getRetrofitInstance()
                 .create(SignInService.class);
-        Call<SignInRM> call = service.signUpUser(signin);
-        call.enqueue(new Callback<SignInRM>() {
+        Call<ResponseModel> call = service.signUpUser(signin);
+        call.enqueue(new Callback<ResponseModel>() {
             @Override
-            public void onResponse(Call<SignInRM> call, Response<SignInRM> response) {
+            public void onResponse(Call<ResponseModel> call, Response<ResponseModel> response) {
                 if(!response.isSuccessful())
                 {
-                    Log.e("Login sem sucesso",response.body().getResponse());
+                    String aux = response.body().getResponse();
+                    Log.e("Login sem sucesso",aux);
                 }
-                Log.e("Mensagem esperada: ",response.body().getResponse());
-                resp = response.body().toString();
+                String aux = response.body().getResponse();
+                Log.e("Mensagem esperada: ",aux);
+                resp = aux;
             }
 
             @Override
-            public void onFailure(Call<SignInRM> call, Throwable t) {
+            public void onFailure(Call<ResponseModel> call, Throwable t) {
 
                 Log.e("Falha de envio: ",t.toString());
 
