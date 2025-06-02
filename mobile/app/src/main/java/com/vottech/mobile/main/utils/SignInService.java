@@ -1,7 +1,6 @@
 package com.vottech.mobile.main.utils;
 
 import com.vottech.mobile.main.data.SignIn;
-import com.vottech.mobile.main.data.SignInRM;
 import com.vottech.mobile.shared.data.ResponseModel;
 
 import retrofit2.Call;

@@ -40,7 +40,7 @@ public class AuthController
         if(response.isPresent()){
             return (response.get().equals("Usuario cadastrado")) 
                 ? ResponseEntity.status(200).body(responseDto)
-                : ResponseEntity.status(401).body(responseDto);
+                : ResponseEntity.status(400).body(responseDto);
         }else
         {
             return ResponseEntity.status(500).body(responseDto);
@@ -56,7 +56,7 @@ public class AuthController
         if(response.isPresent()){
             return (response.get().equals("Login realizado com sucesso")) 
                 ? ResponseEntity.status(200).body(responseDto)
-                : ResponseEntity.status(401).body(responseDto);
+                : ResponseEntity.status(400).body(responseDto);
         }else
         {
             return ResponseEntity.status(500).body(responseDto);

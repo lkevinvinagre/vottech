@@ -17,6 +17,7 @@ import androidx.core.view.WindowInsetsCompat;
 
 import com.vottech.mobile.R;
 import com.vottech.mobile.signup.data.SignUp;
+import com.vottech.mobile.signup.data.SignUpListener;
 import com.vottech.mobile.signup.utils.SignUpLibs;
 
 public class SignUpActivity extends AppCompatActivity {

@@ -1,12 +1,13 @@
 package com.vottech.mobile.signup.utils;
 
+import android.location.GnssAntennaInfo;
 import android.util.Log;
 
 import com.vottech.mobile.shared.data.ResponseModel;
 import com.vottech.mobile.signup.data.SignUp;
 
 import com.vottech.mobile.shared.utils.RetrofitClient;
-import com.vottech.mobile.signup.data.SignUpRM;
+import com.vottech.mobile.signup.data.SignUpListener;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -15,8 +16,19 @@ import retrofit2.Response;
 public class SignUpLibs {
 
     String resp;
-    public SignUpLibs(){}
 
+    final SignUpListener listener = new SignUpListener() {
+        @Override
+        public void onSignUpSuccess(String response) {
+
+        }
+
+        @Override
+        public void onSignUpFailure(String response) {
+
+        }
+    };
+    public SignUpLibs(){}
     public void SignupUser(SignUp signup)
     {
         SignUpService service = RetrofitClient
@@ -32,10 +44,12 @@ public class SignUpLibs {
                     String aux = response.body().getResponse();
                     Log.e("Resposta Sem sucesso",aux);
                     resp = aux;
+                    listener.onSignUpFailure(aux);
                 }
                 String aux = response.body().getResponse();
                 Log.e("Mensagem esperada",aux);
                 resp = aux;
+                listener.onSignUpSuccess(aux);
             }
 
             @Override
