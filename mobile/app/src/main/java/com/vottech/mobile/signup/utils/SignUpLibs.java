@@ -2,6 +2,7 @@ package com.vottech.mobile.signup.utils;
 
 import android.util.Log;
 
+import com.vottech.mobile.shared.data.ResponseModel;
 import com.vottech.mobile.signup.data.SignUp;
 
 import com.vottech.mobile.shared.utils.RetrofitClient;
@@ -22,22 +23,24 @@ public class SignUpLibs {
                 .getRetrofitInstance()
                 .create(SignUpService.class);
       
-        Call<SignUpRM> call = service.signUpUser(signup);
-        call.enqueue(new Callback<SignUpRM>() {
+        Call<ResponseModel> call = service.signUpUser(signup);
+        call.enqueue(new Callback<ResponseModel>() {
 
             @Override
-            public void onResponse(Call<SignUpRM> call, Response<SignUpRM> response) {
+            public void onResponse(Call<ResponseModel> call, Response<ResponseModel> response) {
                 if(!response.isSuccessful())
                 {
-                    Log.e("Resposta Sem sucesso",response.body().response);
+                    String aux = response.body().getResponse();
+                    Log.e("Resposta Sem sucesso",aux);
                     return;
                 }
-                Log.e("Mensagem esperada",response.body().response);
-                resp = response.body().response;
+                String aux = response.body().getResponse();
+                Log.e("Mensagem esperada",aux);
+                resp = aux;
             }
 
             @Override
-            public void onFailure(Call<SignUpRM> call, Throwable t) {
+            public void onFailure(Call<ResponseModel> call, Throwable t) {
                 Log.e("falha de envio",t.toString());
             }
         });

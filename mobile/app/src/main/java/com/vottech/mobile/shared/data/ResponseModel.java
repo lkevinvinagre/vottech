@@ -2,8 +2,14 @@ package com.vottech.mobile.shared.data;
 
 public class ResponseModel {
 
-    String token;
-    String status;
+    private String response;
 
+    public void setResponse(String response) {
+        this.response = response;
+    }
+
+    public String getResponse() {
+        return this.response;
+    }
 
 }

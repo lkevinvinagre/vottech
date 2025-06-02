@@ -7,6 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.api.api.dto.ResponseModel;
 import com.api.api.dto.SignInDto;
 import com.api.api.dto.SignUpDto;
 import com.api.api.service.AuthService;
@@ -31,30 +32,34 @@ public class AuthController
     }
 
     @PostMapping("/signup")
-    public ResponseEntity<String> signUpUser(@RequestBody SignUpDto signup) 
+    public ResponseEntity<ResponseModel> signUpUser(@RequestBody SignUpDto signup) 
     {
+        ResponseModel responseDto = new ResponseModel();
         Optional<String> response = authService.signUp(signup);
+        responseDto.setResponse(response.orElse("Erro ao cadastrar usuario"));
         if(response.isPresent()){
             return (response.get().equals("Usuario cadastrado")) 
-                ? ResponseEntity.status(201).body(response.get())
-                : ResponseEntity.status(409).body(response.get());
+                ? ResponseEntity.status(201).body(responseDto)
+                : ResponseEntity.status(409).body(responseDto);
         }else
         {
-            return ResponseEntity.status(500).body("Erro ao cadastrar usuario");
+            return ResponseEntity.status(500).body(responseDto);
         }
     }
 
     @PostMapping("/signin")
-    public ResponseEntity<String> signInUser(@RequestBody SignInDto signin)
+    public ResponseEntity<ResponseModel> signInUser(@RequestBody SignInDto signin)
     {
+        ResponseModel responseDto = new ResponseModel();
         Optional<String> response = authService.signin(signin);
+        responseDto.setResponse(response.orElse("Erro ao logar usuario"));
         if(response.isPresent()){
             return (response.get().equals("Login realizado com sucesso")) 
-                ? ResponseEntity.status(200).body(response.get())
-                : ResponseEntity.status(401).body(response.get());
+                ? ResponseEntity.status(200).body(responseDto)
+                : ResponseEntity.status(401).body(responseDto);
         }else
         {
-            return ResponseEntity.status(500).body("Erro ao logar usuario");
+            return ResponseEntity.status(500).body(responseDto);
         }
     }
 
