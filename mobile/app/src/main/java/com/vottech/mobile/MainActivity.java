@@ -15,7 +15,6 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-import com.vottech.mobile.home.presetation.home;
 import com.vottech.mobile.main.data.SignIn;
 import com.vottech.mobile.main.utils.SignInLibs;
 import com.vottech.mobile.signup.presetation.SignUpActivity;
@@ -55,12 +54,8 @@ public class MainActivity extends AppCompatActivity {
             SignIn signin = new SignIn();
             signin.setUserOrMail(userOrMail);
             signin.setPassword(password);
-            issue = libs.SignInUser(signin);
-            if(issue.equals("Login realizado com sucesso"))
-            {
-                Intent intent = new Intent(this, home.class);
-                startActivity(intent);
-            }
+            libs.SignInUser(signin);
+            issue = libs.getResp();
         }
         issue_lb.setText(issue);
         issue_lb.setVisibility(VISIBLE);

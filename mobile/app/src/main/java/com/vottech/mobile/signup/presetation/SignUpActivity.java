@@ -4,6 +4,7 @@ import static android.view.View.GONE;
 import static android.view.View.VISIBLE;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -63,7 +64,9 @@ public class SignUpActivity extends AppCompatActivity {
             signup.setName(name);
             signup.setEmail(mail);
             signup.setPassword(pass);
-            issue = libs.SignupUser(signup);
+            Log.e("Etapa 1:","Esta funcional");
+            libs.SignupUser(signup);
+            issue = libs.getResp();
         }
         issue_lb.setText(issue);
         issue_lb.setVisibility(VISIBLE);
