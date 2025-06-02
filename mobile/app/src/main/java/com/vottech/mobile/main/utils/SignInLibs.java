@@ -1,6 +1,9 @@
 package com.vottech.mobile.main.utils;
 
+import android.util.Log;
+
 import com.vottech.mobile.main.data.SignIn;
+import com.vottech.mobile.main.data.SignInRM;
 import com.vottech.mobile.shared.utils.RetrofitClient;
 
 import retrofit2.Call;
@@ -12,30 +15,35 @@ public class SignInLibs {
     private String resp;
     public SignInLibs(){}
 
-    public String SignInUser(SignIn signin)
+    public void SignInUser(SignIn signin)
     {
+
         SignInService service = RetrofitClient
                 .getRetrofitInstance()
                 .create(SignInService.class);
-        Call<String> call = service.signUpUser(signin);
-        call.enqueue(new Callback<String>() {
+        Call<SignInRM> call = service.signUpUser(signin);
+        call.enqueue(new Callback<SignInRM>() {
             @Override
-            public void onResponse(Call<String> call, Response<String> response) {
-                if(response.isSuccessful())
+            public void onResponse(Call<SignInRM> call, Response<SignInRM> response) {
+                if(!response.isSuccessful())
                 {
-                    resp = response.body();
+                    Log.e("Login sem sucesso",response.body().getResponse());
                 }
+                Log.e("Mensagem esperada: ",response.body().getResponse());
+                resp = response.body().toString();
             }
 
             @Override
-            public void onFailure(Call<String> call, Throwable t) {
+            public void onFailure(Call<SignInRM> call, Throwable t) {
 
-                resp = "Não foi possivel cadastrar o usuario";
+                Log.e("Falha de envio: ",t.toString());
 
             }
         });
-
-        return resp;
+    }
+    public String getResp()
+    {
+        return this.resp;
     }
 
 }

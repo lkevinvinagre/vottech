@@ -31,7 +31,7 @@ public class AuthController
     }
 
     @PostMapping("/signup")
-    public ResponseEntity<?> signUpUser(@RequestBody SignUpDto signup) 
+    public ResponseEntity<String> signUpUser(@RequestBody SignUpDto signup) 
     {
         Optional<String> response = authService.signUp(signup);
         if(response.isPresent()){
@@ -45,7 +45,7 @@ public class AuthController
     }
 
     @PostMapping("/signin")
-    public ResponseEntity<?> signInUser(@RequestBody SignInDto signin)
+    public ResponseEntity<String> signInUser(@RequestBody SignInDto signin)
     {
         Optional<String> response = authService.signin(signin);
         if(response.isPresent()){
@@ -54,7 +54,7 @@ public class AuthController
                 : ResponseEntity.status(401).body(response.get());
         }else
         {
-            return ResponseEntity.status(500).body("Erro ao realizar login");
+            return ResponseEntity.status(500).body("Erro ao logar usuario");
         }
     }
 
