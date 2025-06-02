@@ -30,6 +30,7 @@ public class SignInLibs {
                 {
                     String aux = response.body().getResponse();
                     Log.e("Login sem sucesso",aux);
+                    return;
                 }
                 String aux = response.body().getResponse();
                 Log.e("Mensagem esperada: ",aux);

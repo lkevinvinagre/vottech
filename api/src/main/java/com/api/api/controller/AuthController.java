@@ -39,8 +39,8 @@ public class AuthController
         responseDto.setResponse(response.orElse("Erro ao cadastrar usuario"));
         if(response.isPresent()){
             return (response.get().equals("Usuario cadastrado")) 
-                ? ResponseEntity.status(201).body(responseDto)
-                : ResponseEntity.status(409).body(responseDto);
+                ? ResponseEntity.status(200).body(responseDto)
+                : ResponseEntity.status(401).body(responseDto);
         }else
         {
             return ResponseEntity.status(500).body(responseDto);

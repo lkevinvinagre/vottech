@@ -25,14 +25,13 @@ public class SignUpLibs {
       
         Call<ResponseModel> call = service.signUpUser(signup);
         call.enqueue(new Callback<ResponseModel>() {
-
             @Override
             public void onResponse(Call<ResponseModel> call, Response<ResponseModel> response) {
                 if(!response.isSuccessful())
                 {
                     String aux = response.body().getResponse();
                     Log.e("Resposta Sem sucesso",aux);
-                    return;
+                    resp = aux;
                 }
                 String aux = response.body().getResponse();
                 Log.e("Mensagem esperada",aux);
