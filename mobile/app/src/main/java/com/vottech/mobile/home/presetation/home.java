@@ -1,5 +1,6 @@
 package com.vottech.mobile.home.presetation;
 
+import android.icu.lang.UCharacter;
 import android.os.Bundle;
 
 import androidx.activity.EdgeToEdge;
@@ -7,10 +8,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.vottech.mobile.R;
 
 public class home extends AppCompatActivity {
+
+    private RecyclerView projetosRv;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,5 +27,8 @@ public class home extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+        projetosRv = findViewById(R.id.projetos_rv);
+        projetosRv.setLayoutManager(new LinearLayoutManager(this));
+        projetosRv.setHasFixedSize(true);
     }
 }
