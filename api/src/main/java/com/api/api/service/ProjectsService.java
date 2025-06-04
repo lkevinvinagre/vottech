@@ -17,9 +17,11 @@ public class ProjectsService {
     @Autowired
     private ProjectsRepository projectsRepo;
 
-    public List<Projects> getAllProjects() 
+    public List<ProjectsDto> getAllProjects() 
     {
-        return projectsRepo.findAll();
+        List<Projects> search = projectsRepo.findAll();
+        if(search.isEmpty())return List.of();
+        return ProjectsMapper.toDtoList(search);
     }
     public ResponseModel createProject(ProjectsDto projectData)
     {
