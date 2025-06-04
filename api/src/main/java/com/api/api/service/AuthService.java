@@ -26,8 +26,8 @@ public class AuthService {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
-
-    public ResponseModel signin(SignInDto signIn)
+    // Método para Logar o usuário
+    public ResponseModel signIn(SignInDto signIn)
     {
         ResponseModel response = new ResponseModel();
         try
