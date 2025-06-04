@@ -34,23 +34,14 @@ public class AuthController
     @PostMapping("/signup")
     public ResponseEntity<ResponseModel> signUpUser(@RequestBody SignUpDto signup) 
     {
-        ResponseModel responseDto = new ResponseModel();
-        Optional<String> response = authService.signUp(signup);
-        responseDto.setMessage(response.orElse("Erro ao cadastrar usuario"));
-        if(response.isPresent()){
-            return (response.get().equals("Usuario cadastrado")) 
-                ? ResponseEntity.status(200).body(responseDto)
-                : ResponseEntity.status(400).body(responseDto);
-        }else
-        {
-            return ResponseEntity.status(500).body(responseDto);
-        }
+        ResponseModel responseDto = authService.signUp(signup);
+        return ResponseEntity.status(responseDto.getStatus()).body(responseDto);
     }
 
     @PostMapping("/signin")
     public ResponseEntity<ResponseModel> signInUser(@RequestBody SignInDto signin)
     {
-        ResponseModel responseDto = authService.signin(signin);
+        ResponseModel responseDto = authService.signIn(signin);
         return ResponseEntity.status(responseDto.getStatus()).body(responseDto);
     }
 }
