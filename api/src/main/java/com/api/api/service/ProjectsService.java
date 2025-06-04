@@ -38,7 +38,7 @@ public class ProjectsService {
             if(projectsRepo.existsByName(projectData.getName()))
             {
                 response.setMessage("Projeto já existe");
-                response.setStatus(400);
+                response.setStatus(409);
                 return response;
             }
             Projects project = ProjectsMapper.toEntity(projectData);

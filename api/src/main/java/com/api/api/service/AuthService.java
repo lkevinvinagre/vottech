@@ -64,7 +64,7 @@ public class AuthService {
             userRepo.existsByEmail(signUp.getEmail()))
             {
                 response.setMessage("Usuario ou Email já cadastrado");
-                response.setStatus(400);
+                response.setStatus(409);
                 return response;
             }
 
