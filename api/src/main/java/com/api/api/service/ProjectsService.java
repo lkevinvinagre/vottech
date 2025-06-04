@@ -1,6 +1,5 @@
 package com.api.api.service;
 
-import java.util.Collections;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,17 +17,9 @@ public class ProjectsService {
     @Autowired
     private ProjectsRepository projectsRepo;
 
-    public List<ProjectsDto> getAllProjects() 
+    public List<Projects> getAllProjects() 
     {
-        List<Projects> projects = projectsRepo.findAll();
-        if(!projects.isEmpty())
-        {
-            return ProjectsMapper.toDtoList(projects);
-        }
-        else
-        {
-            return Collections.emptyList();
-        }
+        return projectsRepo.findAll();
     }
     public ResponseModel createProject(ProjectsDto projectData)
     {
