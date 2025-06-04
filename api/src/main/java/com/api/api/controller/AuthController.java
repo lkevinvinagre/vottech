@@ -28,7 +28,7 @@ public class AuthController
     @GetMapping("/test")
     public ResponseEntity<?> test() 
     {
-        return ResponseEntity.status(202).body("Api esta funcional");
+        return ResponseEntity.status(200).body("Api esta funcional");
     }
 
     @PostMapping("/signup")
@@ -36,7 +36,7 @@ public class AuthController
     {
         ResponseModel responseDto = new ResponseModel();
         Optional<String> response = authService.signUp(signup);
-        responseDto.setResponse(response.orElse("Erro ao cadastrar usuario"));
+        responseDto.setMessage(response.orElse("Erro ao cadastrar usuario"));
         if(response.isPresent()){
             return (response.get().equals("Usuario cadastrado")) 
                 ? ResponseEntity.status(200).body(responseDto)
@@ -50,17 +50,7 @@ public class AuthController
     @PostMapping("/signin")
     public ResponseEntity<ResponseModel> signInUser(@RequestBody SignInDto signin)
     {
-        ResponseModel responseDto = new ResponseModel();
-        Optional<String> response = authService.signin(signin);
-        responseDto.setResponse(response.orElse("Erro ao logar usuario"));
-        if(response.isPresent()){
-            return (response.get().equals("Login realizado com sucesso")) 
-                ? ResponseEntity.status(200).body(responseDto)
-                : ResponseEntity.status(400).body(responseDto);
-        }else
-        {
-            return ResponseEntity.status(500).body(responseDto);
-        }
+        ResponseModel responseDto = authService.signin(signin);
+        return ResponseEntity.status(responseDto.getStatus()).body(responseDto);
     }
-
 }

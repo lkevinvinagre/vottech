@@ -1,5 +1,6 @@
 package com.vottech.mobile.home.data;
 
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,7 +13,14 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.vottech.mobile.R;
 
+import java.util.List;
+
 public class ProjectAdapter extends RecyclerView.Adapter<ProjectAdapter.ProjectViewHolder> {
+
+    List<Projects> projects;
+    public ProjectAdapter(Context context, List<Projects> projects) {
+        this.projects = projects;
+    }
 
     @NonNull
     @Override
@@ -25,13 +33,15 @@ public class ProjectAdapter extends RecyclerView.Adapter<ProjectAdapter.ProjectV
 
     @Override
     public void onBindViewHolder(@NonNull ProjectAdapter.ProjectViewHolder holder, int position) {
-
-
+        holder.projectTitleLb.setText("Vottech");
+        holder.projectDescriptionLb.setText("Projeto de desenvolver um aplicativo de votação");
+        holder.voteBtn.setText("Votar");
     }
 
     @Override
     public int getItemCount() {
-        return 0;
+
+        return projects.size();
     }
 
     public static class ProjectViewHolder extends RecyclerView.ViewHolder

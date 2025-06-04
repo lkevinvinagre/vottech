@@ -12,10 +12,15 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.vottech.mobile.R;
+import com.vottech.mobile.home.data.ProjectAdapter;
+import com.vottech.mobile.home.data.Projects;
+
+import java.util.List;
 
 public class home extends AppCompatActivity {
 
     private RecyclerView projetosRv;
+    private List<Projects> projects;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,5 +35,8 @@ public class home extends AppCompatActivity {
         projetosRv = findViewById(R.id.projetos_rv);
         projetosRv.setLayoutManager(new LinearLayoutManager(this));
         projetosRv.setHasFixedSize(true);
+
+        ProjectAdapter adapter = new ProjectAdapter(this,projects);
+        projetosRv.setAdapter(adapter);
     }
 }
