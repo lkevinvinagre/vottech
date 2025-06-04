@@ -1,6 +1,5 @@
 package com.api.api.controller;
 
-import java.util.Collection;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,8 +26,8 @@ public class ProjectsController {
     private ProjectsService projectsService;
 
     @GetMapping("/list")
-    public ResponseEntity<List<Projects>> getMethodName(@RequestParam String param) {
-        List<Projects> projects = projectsService.getAllProjects();
+    public ResponseEntity<List<ProjectsDto>> listProjects() {
+        List<ProjectsDto> projects = projectsService.getAllProjects();
         if(!projects.isEmpty()) {
             return ResponseEntity.status(201).body(projects);
         } else {
