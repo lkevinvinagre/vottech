@@ -1,5 +1,6 @@
 package com.api.api.controller;
 
+import java.util.Collection;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.api.api.dto.ProjectsDto;
 import com.api.api.dto.ResponseModel;
+import com.api.api.models.Projects;
 import com.api.api.service.ProjectsService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -25,12 +27,12 @@ public class ProjectsController {
     private ProjectsService projectsService;
 
     @GetMapping("/list")
-    public ResponseEntity<List<ProjectsDto>> getMethodName(@RequestParam String param) {
-        List<ProjectsDto> projects = projectsService.getAllProjects();
-        if (projects.isEmpty()) {
-            return ResponseEntity.notFound().build();
+    public ResponseEntity<List<Projects>> getMethodName(@RequestParam String param) {
+        List<Projects> projects = projectsService.getAllProjects();
+        if(!projects.isEmpty()) {
+            return ResponseEntity.status(201).body(projects);
         } else {
-            return ResponseEntity.ok(projects);
+            return ResponseEntity.status(404).body(List.of());
         }
     }
 
