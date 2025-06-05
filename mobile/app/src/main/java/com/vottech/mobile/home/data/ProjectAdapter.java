@@ -28,7 +28,6 @@ public class ProjectAdapter extends RecyclerView.Adapter<ProjectAdapter.ProjectV
     {
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
         View view = inflater.inflate(R.layout.project_item,parent,false);
-
         return new ProjectViewHolder(view);
     }
 
