@@ -9,10 +9,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.api.api.dto.ProjectsDto;
 import com.api.api.dto.ResponseModel;
-import com.api.api.models.Projects;
 import com.api.api.service.ProjectsService;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
@@ -40,7 +38,4 @@ public class ProjectsController {
         ResponseModel response = projectsService.createProject(projectData);
         return ResponseEntity.status(response.getStatus()).body(response);
     }
-    
-    
-
 }

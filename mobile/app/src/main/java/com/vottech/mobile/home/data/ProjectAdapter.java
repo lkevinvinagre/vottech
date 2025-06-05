@@ -24,7 +24,8 @@ public class ProjectAdapter extends RecyclerView.Adapter<ProjectAdapter.ProjectV
 
     @NonNull
     @Override
-    public ProjectAdapter.ProjectViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public ProjectAdapter.ProjectViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType)
+    {
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
         View view = inflater.inflate(R.layout.project_item,parent,false);
 
@@ -32,9 +33,10 @@ public class ProjectAdapter extends RecyclerView.Adapter<ProjectAdapter.ProjectV
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ProjectAdapter.ProjectViewHolder holder, int position) {
-        holder.projectTitleLb.setText("Vottech");
-        holder.projectDescriptionLb.setText("Projeto de desenvolver um aplicativo de votação");
+    public void onBindViewHolder(@NonNull ProjectAdapter.ProjectViewHolder holder, int position)
+    {
+        holder.projectTitleLb.setText(projects.get(0).getName());
+        holder.projectDescriptionLb.setText(projects.get(0).getDescription());
         holder.voteBtn.setText("Votar");
     }
 
