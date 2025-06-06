@@ -34,8 +34,8 @@ public class ProjectAdapter extends RecyclerView.Adapter<ProjectAdapter.ProjectV
     @Override
     public void onBindViewHolder(@NonNull ProjectAdapter.ProjectViewHolder holder, int position)
     {
-        holder.projectTitleLb.setText(projects.get(0).getName());
-        holder.projectDescriptionLb.setText(projects.get(0).getDescription());
+        holder.projectTitleLb.setText(projects.get(position).getName());
+        holder.projectDescriptionLb.setText(projects.get(position).getDescription());
         holder.voteBtn.setText("Votar");
     }
 
