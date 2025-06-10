@@ -1,6 +1,5 @@
 package com.vottech.mobile.home.presetation;
 
-import android.icu.lang.UCharacter;
 import android.os.Bundle;
 
 import androidx.activity.EdgeToEdge;
@@ -13,14 +12,10 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.vottech.mobile.R;
 import com.vottech.mobile.home.data.ProjectAdapter;
-import com.vottech.mobile.home.data.Projects;
+import com.vottech.mobile.home.utils.ProjectsLibs;
 
-import java.util.List;
 
 public class home extends AppCompatActivity {
-
-    private RecyclerView projetosRv;
-    private List<Projects> projects;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,11 +27,12 @@ public class home extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
-        projetosRv = findViewById(R.id.projetos_rv);
+        RecyclerView projetosRv = findViewById(R.id.projetos_rv);
         projetosRv.setLayoutManager(new LinearLayoutManager(this));
         projetosRv.setHasFixedSize(true);
-
-        ProjectAdapter adapter = new ProjectAdapter(this,projects);
+        
+        ProjectsLibs.setProjects();
+        ProjectAdapter adapter = new ProjectAdapter(this,ProjectsLibs.getProjects());
         projetosRv.setAdapter(adapter);
     }
 }

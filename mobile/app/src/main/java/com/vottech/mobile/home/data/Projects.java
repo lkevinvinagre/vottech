@@ -2,30 +2,29 @@ package com.vottech.mobile.home.data;
 
 public class Projects {
 
-    private int banner;
-    private String title;
+    private int id;
+    private String name;
     private String description;
     private int votes;
 
     public Projects(){}
 
-    public void setBanner(int banner)
+    public void setId(int id)
     {
-        this.banner = banner;
+        this.id = id;
     }
-    public int getBanner()
+    public int getId()
     {
-        return this.banner;
+        return this.id;
+    }
+    public void setName(String name)
+    {
+        this.name = name;
     }
 
-    public void setTitle(String title)
+    public String getName()
     {
-        this.title = title;
-    }
-
-    public String getTitle()
-    {
-        return this.title;
+        return this.name;
     }
     public void setDescription(String description)
     {
